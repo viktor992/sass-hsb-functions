@@ -1,0 +1,40 @@
+@use "sass:math";
+@use "utils";
+
+
+@function hsb-to-color($hue, $saturation, $brightness, $alpha: 1) {
+  $saturation: utils.percentage-to-decimal($saturation);
+  $brightness: utils.percentage-to-decimal($brightness);
+  $color-hsl: utils.hsb-to-hsl($hue, $saturation, $brightness, $alpha);
+  @return hsla($hue, nth($color-hsl, 2), nth($color-hsl, 3), $alpha);
+}
+
+@function change-color-hsb($color, $saturation: null, $brightness: null) {
+  $h: hue($color);
+  $s: math.div(saturation($color), 100%);
+  $l: math.div(lightness($color), 100%);
+  $a: alpha($color);
+
+  $color-hsb: utils.hsl-to-hsb($h, $s, $l);
+  @return hsb-to-color(
+    $h,
+    $saturation or nth($color-hsb, 2),
+    $brightness or nth($color-hsb, 3),
+    $a
+  );
+}
+
+@function adjust-color-hsb($color, $saturation: 0%, $brightness: 0%) {
+  $h: hue($color);
+  $s: math.div(saturation($color), 100%);
+  $l: math.div(lightness($color), 100%);
+  $a: alpha($color);
+
+  $color-hsb: utils.hsl-to-hsb($h, $s, $l);
+  @return hsb-to-color(
+    nth($color-hsb, 1),
+    $saturation + nth($color-hsb, 2),
+    $brightness + nth($color-hsb, 3),
+    $a
+  );
+}

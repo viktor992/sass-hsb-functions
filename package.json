@@ -1,0 +1,21 @@
+{
+  "name": "sass-hsb-functions",
+  "version": "0.1.0",
+  "description": "SASS functions for manipulating HSB colors. ",
+  "main": "_hsb-functions.scss",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viktor992/sass-hsb-functions.git"
+  },
+  "keywords": [
+    "sass",
+    "hsb",
+    "hsv"
+  ],
+  "author": "Daniel Ughelli",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/viktor992/sass-hsb-functions/issues"
+  },
+  "homepage": "https://github.com/viktor992/sass-hsb-functions#readme"
+}

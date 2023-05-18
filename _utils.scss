@@ -1,0 +1,32 @@
+@use "sass:math";
+
+// Ported from https://stackoverflow.com/a/69121113
+@function hsb-to-hsl($h, $s, $b, $a: 1) {
+  $l-hsl: $b * (1 - math.div($s, 2));
+  $s-hsl: if(
+    $l-hsl == 0 or $l-hsl == 1,
+    0,
+    math.div(($b - $l-hsl), (math.min($l-hsl, 1 - $l-hsl)))
+  );
+  @return ($h, $s-hsl * 100%, $l-hsl * 100%, $a);
+}
+
+// Ported from https://stackoverflow.com/a/69121113
+@function hsl-to-hsb($h, $s, $l, $a: 1) {
+  $b-hsb: $l + $s * math.min($l, 1 - $l);
+  $s-hsb: if($b-hsb == 0, 0, 2 * (1 - math.div($l, $b-hsb)));
+  @return ($h, $s-hsb * 100%, $b-hsb * 100%, $a);
+}
+
+@function percentage-to-decimal($value) {
+  $decimal-value: $value;
+  @if ($value != null) {
+    @if (unit($value) == "%") {
+      $decimal-value: math.div($value, 100%);
+    } @else {
+      $decimal-value: math.div($value, 100);
+    }
+    $decimal-value: math.clamp(0, $decimal-value, 1);
+  }
+  @return $decimal-value;
+}

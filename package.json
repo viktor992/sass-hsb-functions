@@ -1,6 +1,6 @@
 {
   "name": "sass-hsb-functions",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "SASS functions for manipulating HSB colors. ",
   "main": "_hsb-functions.scss",
   "repository": {
